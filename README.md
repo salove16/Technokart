@@ -43,4 +43,22 @@ Pass all the three parameters as json object i.e; <br>
     "invoice_date" : Date
 }
 ```
-and hit the URL with <b>POST</b> method
+and hit the URL with <b>POST</b> method <br>
+2. Update a Specific invoice based on invoice number : <br>
+```http://localhost:5005/invoice/:number``` <br>
+It will update the invoice based on the number which you have passed as params in the URL with <b>PATCH</b> method.<br>
+3. Delete a specific invoice based on invoice number <br>
+```http://localhost:5005/invoice/:number``` <br>
+It will delete an invoice based on the number which you have passed as params in the URL with <b>DELETE</b> method. <br>
+4. Get all the invoices from the database: <br>
+```http://localhost:5005/invoice``` <br>
+It will fetch all the invoices that are present in the database and the method is <b>GET</b> method.
+5. Get the invoice between two dates : <br>
+```http://localhost:5005/invoice/date``` <br>
+It will fetch all the invoice that are there in between the start date and the end date. You need to pass an object with start and end date with <b>GET</b> method i.e: <br>
+```
+{
+    "start_date": Date,
+    "end_date" : Date
+}
+```
