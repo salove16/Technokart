@@ -9,7 +9,7 @@ router.post("/", validateDate, async (req, res) => {
     const invoice = await Invoice.create(req.body);
     return res.status(201).send(invoice);
   } catch (error) {
-    return res.status(500).send(error);
+    return res.status(500).send({ message: error.message });
   }
 });
 
@@ -43,6 +43,25 @@ router.delete("/:number", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const invoices = await Invoice.find({});
+    return res.status(200).send(invoices);
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+});
+
+// To GET all invoices between two dates
+router.get("/date", async (req, res) => {
+  try {
+    const invoices = await Invoice.aggregate([
+      {
+        $match: {
+          invoice_date: {
+            $lt: new Date(req.body.end_date),
+            $gt: new Date(req.body.start_date),
+          },
+        },
+      },
+    ]);
     return res.status(200).send(invoices);
   } catch (error) {
     return res.status(500).send({ message: error.message });
