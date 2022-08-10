@@ -42,7 +42,7 @@ router.delete("/:number", async (req, res) => {
 // To GET all invoice
 router.get("/", async (req, res) => {
   try {
-    const invoices = await Invoice.find({});
+    const invoices = await Invoice.find({}).sort({invoice_number:1});
     return res.status(200).send(invoices);
   } catch (error) {
     return res.status(500).send({ message: error.message });

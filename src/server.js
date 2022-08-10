@@ -1,6 +1,6 @@
 const connect = require("./config/db");
 const app = require("./index");
-const PORT = 5005;
+const PORT = 5010;
 
 // server connected to Database
 
